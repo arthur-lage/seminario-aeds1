@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "stdio.h": "c",
-        "selectionsort.h": "c",
-        "leitordearquivo.h": "c",
-        "lista.h": "c",
-        "fila.h": "c"
-    }
-}
