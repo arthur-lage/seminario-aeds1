@@ -26,6 +26,11 @@ end
 if __FILE__ == $0
   lista = Lista.new
   lista.carregar_dados('../../datasets/100.dat')
-  puts "Ordenado por timestamp:"
-  puts lista.ordenar_por(:timestamp).map(&:to_s)
+
+  start = Time.now
+  
+  lista.ordenar_por(:timestamp)
+
+  time_spent = (Time.now - start) * 1000
+  puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
 end

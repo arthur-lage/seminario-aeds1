@@ -39,6 +39,10 @@ if __FILE__ == $0
   fila = Fila.new
   fila.carregar_dados('../../datasets/100.dat')
   
-  puts "\nOrdenado por timestamp:"
-  puts fila.ordenar_por(:timestamp).map(&:to_s)
+  start = Time.now
+  
+  fila.ordenar_por(:timestamp)
+  
+  time_spent = (Time.now - start) * 1000
+  puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
 end
