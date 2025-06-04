@@ -4,7 +4,7 @@ public class Main {
             Registro[] registros = LeitorDeArquivo.lerRegistros("../../datasets/10000.dat");
             System.out.println("Registros lidos: " + registros.length);
             
-            Ordenador ordenador = new InsertSort();
+            Ordenador ordenador = new SelectionSort();
             int capacidade = registros.length;
 
             System.out.println("Fila com ponteiros:");
