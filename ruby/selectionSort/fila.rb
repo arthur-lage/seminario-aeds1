@@ -37,7 +37,7 @@ end
 
 if __FILE__ == $0
   fila = Fila.new
-  fila.carregar_dados('../../100.dat')
+  fila.carregar_dados('../../datasets/100.dat')
   
   puts "\nOrdenado por timestamp:"
   puts fila.ordenar_por(:timestamp).map(&:to_s)

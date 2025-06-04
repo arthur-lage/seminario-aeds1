@@ -37,7 +37,7 @@ end
 
 if __FILE__ == $0
   pilha = Pilha.new
-  pilha.carregar_dados('../../100.dat')
+  pilha.carregar_dados('../../datasets/100.dat')
   puts "Ordenado por timestamp:"
   puts pilha.ordenar_por(:timestamp).map(&:to_s)
 end
