@@ -10,7 +10,7 @@ int main () {
     FilaVetor filaVetor;
     inicializarFilaVetor(&filaVetor);
     
-    carregarDadosParaFilaVetor("/home/will/Documentos/AEDS/Seminario/GnomeSort/datasets/100.dat", &filaVetor);
+    carregarDadosParaFilaVetor("../../datasets/100.dat", &filaVetor);
     
     clock_t start = clock();
 

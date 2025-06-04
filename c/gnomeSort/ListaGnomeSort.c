@@ -10,7 +10,7 @@ int main () {
     Lista lista;
     inicializarLista(&lista);
     
-    carregarDadosParaLista("/home/will/Documentos/AEDS/Seminario/GnomeSort/datasets/100.dat", &lista);
+    carregarDadosParaLista("../../datasets/100.dat", &lista);
     
     clock_t start = clock();
 

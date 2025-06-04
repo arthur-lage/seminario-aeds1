@@ -35,15 +35,6 @@ def read_ratings(filename):
         print(f"Erro ao abrir o arquivo {filename}: {e}")
         return None
 
-def insertion_sort(ratings):
-    for i in range(1, len(ratings)):
-        chave = ratings[i]
-        j = i - 1
-        while j >= 0 and ratings[j].timestamp > chave.timestamp:
-            ratings[j + 1] = ratings[j]
-            j -= 1
-        ratings[j + 1] = chave
-
 def main():
     ratings = read_ratings("../../datasets/100.dat")
     

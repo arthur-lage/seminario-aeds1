@@ -10,7 +10,7 @@ int main () {
     Pilha pilha;
     inicializarPilha(&pilha);
     
-    carregarDadosParaPilha("/home/Heitor/Documentos/Seminario AEDS/datasets/100.dat", &pilha);
+    carregarDadosParaPilha("../../datasets/100.dat", &pilha);
     
     clock_t start = clock();
 

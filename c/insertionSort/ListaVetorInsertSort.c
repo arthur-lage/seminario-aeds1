@@ -10,7 +10,7 @@ int main () {
     ListaVetor listaVetor;
     inicializarListaVetor(&listaVetor);
     
-    carregarDadosParaListaVetor("/home/Heitor/Documentos/Seminario AEDS/datasets/100.dat", &listaVetor);
+    carregarDadosParaListaVetor("../../datasets/100.dat", &listaVetor);
     
     clock_t start = clock();
 

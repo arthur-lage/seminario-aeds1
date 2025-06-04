@@ -11,7 +11,7 @@ int main () {
     Fila fila;
     inicializarFila(&fila);
     
-    carregarDadosParaFila("/home/Heitor/Documentos/Seminario AEDS/datasets/100000.dat", &fila);
+    carregarDadosParaFila("../../datasets/100.dat", &fila);
     
     clock_t start = clock();
 

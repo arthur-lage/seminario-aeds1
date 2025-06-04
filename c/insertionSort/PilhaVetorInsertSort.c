@@ -10,7 +10,7 @@ int main () {
     PilhaVetor pilhaVetor;
     inicializarPilhaVetor(&pilhaVetor);
     
-    carregarDadosParaPilhaVetor("/home/Heitor/Documentos/Seminario AEDS/datasets/100.dat", &pilhaVetor);
+    carregarDadosParaPilhaVetor("../../datasets/100.dat", &pilhaVetor);
     
     clock_t start = clock();
 
