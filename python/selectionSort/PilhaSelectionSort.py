@@ -41,7 +41,7 @@ def main():
     if ratings is not None:
         start = time.perf_counter()
         
-        sorted_ratings = selection_sort(ratings)
+        sorted_ratings = selection_sort_stack(ratings)
         
         end = time.perf_counter()
         time_spent = (end - start) * 1000

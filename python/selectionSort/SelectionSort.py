@@ -10,3 +10,17 @@ def selection_sort(ratings):
         ratings[i], ratings[min_idx] = ratings[min_idx], ratings[i]
     
     return ratings 
+
+def selection_sort_stack(ratings):
+    unsorted = list(ratings) 
+    sorted_stack = []
+    
+    while unsorted:
+        min_index = 0
+        for i in range(1, len(unsorted)):
+            if unsorted[i].timestamp < unsorted[min_index].timestamp:
+                min_index = i
+        
+        sorted_stack.append(unsorted.pop(min_index))
+    
+    return sorted_stack

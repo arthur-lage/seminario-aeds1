@@ -7,7 +7,6 @@ def insertion_sort(ratings):
             j -= 1
         ratings[j + 1] = chave
 
-
 def insertion_sort_stack(ratings):
     stack = []
     
