@@ -1,20 +1,48 @@
-MAX_LINE_LENGTH = 256
-
 require_relative 'gnome_sort'
-require_relative 'rating'
+require_relative 'registro'
 
-def main
-  ratings = ReadRatings.read_ratings("../../datasets/100.dat")
+class Pilha
+  attr_reader :dados
   
-  if ratings
-    start = Time.now
+  def initialize
+    @dados = []
+  end
+
+  def empilhar(registro)
+    @dados.push(registro)
+  end
+
+  def desempilhar
+    @dados.pop
+  end
+
+  def ordenar_por(campo = :user_id)
+    elementos = []
+    while @dados.any?
+      elementos << desempilhar
+    end
     
-    sorted_ratings = GnomeSort.gnome_sort_stack(ratings)
+    elementos_ordenados = GnomeSort.sort(elementos, campo)
     
-    time_spent = (Time.now - start) * 1000
-    
-    puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
+    elementos_ordenados.each { |e| empilhar(e) }
+    elementos_ordenados
+  end
+
+  def carregar_dados(caminho_arquivo)
+    File.foreach(caminho_arquivo) do |linha|
+      empilhar(Registro.new(linha))
+    end
   end
 end
 
-main if __FILE__ == $0
+if __FILE__ == $0
+  pilha = Pilha.new
+  pilha.carregar_dados('../../datasets/100.dat')
+
+  start = Time.now
+  
+  pilha.ordenar_por(:timestamp)
+
+  time_spent = (Time.now - start) * 1000
+  puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
+end
