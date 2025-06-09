@@ -36,13 +36,19 @@ class Fila
 end
 
 if __FILE__ == $0
-  fila = Fila.new
-  fila.carregar_dados('../../datasets/100.dat')
+  total = 0
   
-  start = Time.now
-  
-  fila.ordenar_por(:timestamp)
-  
-  time_spent = (Time.now - start) * 1000
-  puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
+  for i in 1..10 do
+    fila = Fila.new
+    fila.carregar_dados('../../datasets/10000.dat')
+    
+    start = Time.now
+    
+    fila.ordenar_por(:timestamp)
+    
+    time_spent = (Time.now - start) * 1000
+    total += time_spent
+  end
+
+  puts "\nMedia: #{(total/10).round(5)} ms"
 end

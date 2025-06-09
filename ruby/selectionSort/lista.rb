@@ -24,13 +24,19 @@ class Lista
 end
 
 if __FILE__ == $0
-  lista = Lista.new
-  lista.carregar_dados('../../datasets/100.dat')
-
-  start = Time.now
+  total = 0
   
-  lista.ordenar_por(:timestamp)
+  for i in 1..10 do
+    lista = Lista.new
+    lista.carregar_dados('../../datasets/10000.dat')
 
-  time_spent = (Time.now - start) * 1000
-  puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
+    start = Time.now
+    
+    lista.ordenar_por(:timestamp)
+    
+    time_spent = (Time.now - start) * 1000
+    total += time_spent
+  end
+
+  puts "\nMedia: #{(total/10).round(5)} ms"
 end

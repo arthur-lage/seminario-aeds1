@@ -36,17 +36,21 @@ def read_ratings(filename):
         return None
 
 def main():
-    ratings = read_ratings("../../datasets/100.dat")
+    total = 0
+
+    for i in range(10):
+        ratings = read_ratings("../../datasets/10000.dat")
     
-    if ratings is not None:
-        start = time.perf_counter()
+        if ratings is not None:
+            start = time.perf_counter()
+            
+            sorted_ratings = insertion_sort_stack(ratings)
+            
+            end = time.perf_counter()
+            time_spent = (end - start) * 1000
+            total += time_spent
         
-        sorted_ratings = insertion_sort_stack(ratings)
-        
-        end = time.perf_counter()
-        time_spent = (end - start) * 1000
-        
-        print(f"\nTempo de ordenação: {time_spent:.2f} ms")
+    print(f"\nMedia: {(total / 10):.5f} ms")
 
 if __name__ == "__main__":
     main()

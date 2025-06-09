@@ -36,13 +36,19 @@ class Pilha
 end
 
 if __FILE__ == $0
-  pilha = Pilha.new
-  pilha.carregar_dados('../../datasets/100.dat')
-
-  start = Time.now
+  total = 0
   
-  pilha.ordenar_por(:timestamp)
+  for i in 1..10 do
+    pilha = Pilha.new
+    pilha.carregar_dados('../../datasets/10000.dat')
+    
+    start = Time.now
+    
+    pilha.ordenar_por(:timestamp)
+    
+    time_spent = (Time.now - start) * 1000
+    total += time_spent
+  end
 
-  time_spent = (Time.now - start) * 1000
-  puts "\nTempo de ordenação: #{time_spent.round(2)} ms"
+  puts "\nMedia: #{(total/10).round(5)} ms"
 end
