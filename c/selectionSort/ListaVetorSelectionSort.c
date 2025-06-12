@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <time.h>  
 
-#include "PilhaVetor.h"
-#include "InsertSort.h"
+#include "ListaVetor.h"
+#include "SelectionSort.h"
 #include "LeitorDeArquivo.h"
 
 int main () {
@@ -11,19 +11,19 @@ int main () {
 
     for (int i = 0; i < 10; i++)
     {
-    PilhaVetor pilhaVetor;
-    inicializarPilhaVetor(&pilhaVetor);
+    ListaVetor listaVetor;
+    inicializarListaVetor(&listaVetor);
     
-    carregarDadosParaPilhaVetor("../../datasets/100000.dat", &pilhaVetor);
+    carregarDadosParaListaVetor("../../datasets/100000.dat", &listaVetor);
     
     clock_t start = clock();
 
-    insertionSortPilhaVetor(&pilhaVetor);
+    selectionSortListaVetor(&listaVetor);
 
     clock_t end = clock();
-   
+    
     double time_spent = (double)(end - start) * 1000 / CLOCKS_PER_SEC;  
-  
+   
     printf("\nTempo de ordenação: %.2f ms  \n", time_spent);
 
     

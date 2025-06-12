@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "Registro.h"
 
-#define MAXTAM 1000
+#define MAXTAM 100000
 
 typedef struct {
     Registro queue[MAXTAM];

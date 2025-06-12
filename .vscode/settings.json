@@ -56,6 +56,11 @@
         "streambuf": "cpp",
         "cinttypes": "cpp",
         "typeinfo": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "pilhavetor.h": "c",
+        "selectionsort.h": "c",
+        "time.h": "c",
+        "stdio.h": "c",
+        "leitordearquivo.h": "c"
     }
 }
