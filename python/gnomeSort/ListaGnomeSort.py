@@ -1,4 +1,5 @@
 import time
+import tracemalloc
 from GnomeSort import gnome_sort
 
 MAX_LINE_LENGTH = 256
@@ -36,21 +37,32 @@ def read_ratings(filename):
         return None
 
 def main():
-    total = 0
+    total_time = 0
+    total_memory = 0
+    
+    tracemalloc.start()  # Inicia o rastreamento de memória
+    
     for i in range(10):
-        ratings = read_ratings("../../datasets/10000.dat")
+        ratings = read_ratings("../../datasets/100.dat")
     
         if ratings is not None:
+            # Medição de tempo (original)
             start = time.perf_counter()
-            
             gnome_sort(ratings)
-            
             end = time.perf_counter()
-            time_spent = (end - start) * 1000  # Convertendo para milissegundos
-            total += time_spent
+            time_spent = (end - start) * 1000
+            total_time += time_spent
             
+            # Medição de memória (adicionado)
+            current_mem, peak_mem = tracemalloc.get_traced_memory()
+            total_memory += peak_mem
+            
+            tracemalloc.reset_peak()  # Reseta para a próxima iteração
     
-    print(f"\nMedia: {(total / 10):.5f} ms")
+    tracemalloc.stop()  # Para o rastreamento
+    
+    print(f"\nMedia tempo: {(total_time / 10):.5f} ms")
+    print(f"Media pico memoria: {(total_memory / 10) / 1024:.2f} KiB")  # Convertendo bytes para KiB
 
 if __name__ == "__main__":
     main()

@@ -3,8 +3,19 @@
 #include "Pilha.hpp"
 #include "Fila.hpp"
 #include "Nodo.hpp"
+#include <sys/resource.h>
+#include <iostream>
+
+// Função auxiliar para medição de memória (Linux/Unix)
+long getMemoryUsageKB() {
+    struct rusage usage;
+    getrusage(RUSAGE_SELF, &usage);
+    return usage.ru_maxrss; // Retorna KB em sistemas Linux
+}
 
 void GnomeSort::gnomeSortLista(Lista *lista) {
+    long memBefore = getMemoryUsageKB();
+    
     if (!lista || !lista->getInicio() || !lista->getInicio()->prox) return;
 
     Nodo* i = lista->getInicio();
@@ -26,8 +37,14 @@ void GnomeSort::gnomeSortLista(Lista *lista) {
             }
         }
     }
+    
+    long memAfter = getMemoryUsageKB();
+    std::cout << "[Lista] Memória utilizada: " << (memAfter - memBefore) << " KB\n";
 }
+
 void GnomeSort::gnomeSortFila(Fila* f) {
+    long memBefore = getMemoryUsageKB();
+    
     if (f->vazia() || f->getFrente()->getProx() == nullptr) return;
 
     Nodo* i = f->getFrente();
@@ -49,8 +66,14 @@ void GnomeSort::gnomeSortFila(Fila* f) {
             }
         }
     }
+    
+    long memAfter = getMemoryUsageKB();
+    std::cout << "[Fila] Memória utilizada: " << (memAfter - memBefore) << " KB\n";
 }
+
 void GnomeSort::gnomeSortPilha(Pilha *p) {
+    long memBefore = getMemoryUsageKB();
+    
     if (p->vazia() || p->getTopo()->getProx() == nullptr) return;
 
     Nodo* i = p->getTopo();
@@ -72,4 +95,7 @@ void GnomeSort::gnomeSortPilha(Pilha *p) {
             }
         }
     }
+    
+    long memAfter = getMemoryUsageKB();
+    std::cout << "[Pilha] Memória utilizada: " << (memAfter - memBefore) << " KB\n";
 }

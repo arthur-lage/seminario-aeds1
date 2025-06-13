@@ -1,8 +1,7 @@
 import time
 from collections import deque
 from GnomeSort import gnome_sort
-
-MAX_LINE_LENGTH = 256
+import tracemalloc
 
 class Rating:
     def __init__(self, userId, movieId, rating, timestamp):
@@ -37,17 +36,33 @@ def read_ratings(filename):
         return None
 
 def main():
-    ratings = read_ratings("../../datasets/10000.dat")
+    # Inicia o rastreamento de memória
+    tracemalloc.start()
+    
+    ratings = read_ratings("../../datasets/100.dat")
     
     if ratings is not None:
+        # Tira um snapshot antes da ordenação
+        snapshot1 = tracemalloc.take_snapshot()
+        
         start = time.perf_counter()
-        
         gnome_sort(ratings)
-        
         end = time.perf_counter()
+        
+        # Tira um snapshot depois da ordenação
+        snapshot2 = tracemalloc.take_snapshot()
+        
+        # Calcula a diferença de memória
+        top_stats = snapshot2.compare_to(snapshot1, 'lineno')
+        total_memory = sum(stat.size_diff for stat in top_stats)
+        
         time_spent = (end - start) * 1000
         
         print(f"\nTempo de ordenação: {time_spent:.5f} ms")
+        print(f"Memória utilizada durante a ordenação: {total_memory / 1024:.2f} KiB")
+        
+        # Mostra as alocações detalhadas (opcional)
+    tracemalloc.stop()
 
 if __name__ == "__main__":
     main()

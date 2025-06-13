@@ -1,5 +1,6 @@
 require_relative 'gnome_sort'
 require_relative 'registro'
+require 'get_process_mem'  # For memory measurement
 
 class Pilha
   attr_reader :dados
@@ -36,19 +37,34 @@ class Pilha
 end
 
 if __FILE__ == $0
-  total = 0
-  
+  total_time = 0.0
+  total_memory = 0.0
+  mem = GetProcessMem.new  # Memory tracker
+
   for i in 1..10 do
+    # Clean up memory before measurement
+    GC.start
+    
     pilha = Pilha.new
     pilha.carregar_dados('../../datasets/10000.dat')
     
+    # Memory before sorting
+    mem_before = mem.mb
+    
     start = Time.now
-    
     pilha.ordenar_por(:timestamp)
-    
     time_spent = (Time.now - start) * 1000
-    total += time_spent
+    
+    # Memory after sorting
+    mem_after = mem.mb
+    memory_used = mem_after - mem_before
+    
+    total_time += time_spent
+    total_memory += memory_used
+    
+    puts "Execução #{i}: Tempo: #{time_spent.round(5)} ms | Memória: #{memory_used.round(5)} MB"
   end
 
-  puts "\nMedia: #{(total/10).round(5)} ms"
+  puts "\nMédia de tempo: #{(total_time/10).round(5)} ms"
+  puts "Média de memória: #{(total_memory/10).round(5)} MB"
 end
