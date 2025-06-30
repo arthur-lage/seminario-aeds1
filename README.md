@@ -36,7 +36,26 @@ gcc arquivo.c -o ./programa
 - Em C++:
 ```bash
 # Comando para compilar um programa específico
-gcc arquivo.c -o ./programa
+g++ arquivo1.cpp arquivo2.cpp -o ./programa
 
 # Executar o programa
 ./programa
+```
+
+- Em Java:
+```bash
+# Executar o programa
+java Arquivo.java
+```
+
+- Em Python:
+```bash
+# Executar o programa
+python3 arquivo.py
+```
+
+- Em Ruby:
+```bash
+# Executar o programa
+ruby arquivo.rb
+```
