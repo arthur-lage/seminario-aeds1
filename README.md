@@ -1,5 +1,9 @@
 # Seminario AEDS: Algoritmos de Ordenação em C
 
+### ⚠️ Link para o slide
+
+https://www.canva.com/design/DAGrNvxJ-GA/cy89G2jBeazPYest20Z1iw/edit?utm_content=DAGrNvxJ-GA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 Este repositório contém implementações em C de três algoritmos de ordenação clássicos: **Insertion Sort**, **Selection Sort** e **Gnome Sort**. Cada algoritmo possui características específicas que o tornam mais ou menos adequado para diferentes cenários.
 
 ## 🔄 Insertion Sort
